@@ -17,7 +17,7 @@
                 <div class="form-group  col-xl-3 ">
                     <label for="combo_name"><?php echo $this->lang->line('combo_name') ?></label>
                     <div  class="position-relative has-icon-left">
-                        <input type="text" id="combo_name_" class="form-control"
+                        <input type="text" id="combo_name_1" class="form-control"
                                placeholder="<?php echo $this->lang->line('combo_name') ?>" name="combo_name_1"
                                value="" required="" >
 
@@ -70,7 +70,7 @@
                             ?>
                             <fieldset>
                                 <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="<?php echo $branch_location->branch_location_id ?>" name="items_branch_location[]">
+                                    <input type="checkbox" class="custom-control-input" value="<?php echo $branch_location->branch_location_id ?>" name="branch_locatio_combo_1">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">
                                         <?php
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            <input type="text" value="" id="combo_form_number" name="form_number"/>
+            <input type="text" value="" id="combo_form_number" name="combo_form_number"/>
 
 
             <div class="card-block p-0" id="combo_add_form"></div>
