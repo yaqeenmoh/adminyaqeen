@@ -36,7 +36,6 @@ class Combo_crud extends CI_Model {
     }
 
     //insert combo
-
 //    public function saveCombo($data_array, $item_array) {
 //
 //
@@ -49,34 +48,22 @@ class Combo_crud extends CI_Model {
 //        $this->db->insert_batch('combo_items', $item_array);
 //    }
 
-    
-    
-    
-    
-    
-    
+
+
     public function saveCombo($data_array) {
-        $this->db->insert_batch($this->table, $data_array);
-        $comboId = $this->db->insert_id();
-        return $comboId ;
+        if ($this->db->insert_batch($this->table, $data_array)) {
+            $comboId = $this->db->insert_id();
+           
+            return $comboId;
+        } else {
+            return false;
+        }
     }
 
-    
-    
-    
-    
     public function saveComboItems($combo_items_data) {
         $this->db->insert('combo_items', $combo_items_data);
-        
     }
 
-    
-    
-    
-    
-    
-    
-    
     //update application data 
 
     public function updateComboData($id, $comboArray) {

@@ -41,33 +41,34 @@ class Combo extends CI_Controller {
     }
 
     public function save_combo() {
+        $counter = $_POST['combo_form_number'];
+        $combo_counter = (int) $counter;
+        $data_array = array();
+        for ($i = 1; $i <= $combo_counter; $i++) {
 
-
-        if (isset($_POST['combo_validation'])) {
-            $counter_combo = $_POST['combo_form_number'];
-            $counter=(int) $counter_combo;
-            
-           
-            $data_array = array();
-            for ($i = 1; $i <= $counter; $i++) {
+            if (isset($_POST['combo_validation'])) {
                 $combo_name = $this->input->post('combo_name_' . $i);
                 $combo_price = $this->input->post('combo_price_' . $i);
                 $combo_start_date = $this->input->post('combo_satrtDate_' . $i);
                 $combo_end_date = $this->input->post('combo_endDate_' . $i);
-                $combo_branch_location = $this->input->post('branch_locatio_combo_' . $i);
+                $combo_branch_location = $this->input->post('branch_location_combo_' . $i);
+                $items_counter = $this->input->post('combo_item_id_counter');
+
+
                 $sub_array = array('name' => $combo_name, 'price' => $combo_price,
-                    'start_date' => $combo_start_date, 'end_date' => $combo_end_date, 'location_branch_id' => $combo_branch_location);
+                    'start_date' => $combo_start_date, 'end_date' => $combo_end_date,
+                    'location_branch_id' => $combo_branch_location);
                 array_push($data_array, $sub_array);
-                var_dump($sub_array);
-                die();
             }
-
-            $comboId = $this->comboes->saveCombo($data_array);
-
-
-
-            redirect(rest_path('Combo'));
         }
+        $comboId = $this->comboes->saveCombo($data_array);
+        
+        for ($j = 1; $i < $items_counter; $j++) {
+            $items_combo = $this->input->post('item_combo_id_' . $i);
+            var_dump($items_combo);
+            die();
+        }
+        redirect(rest_path('Combo'));
     }
 
     public function addNewCombo() {

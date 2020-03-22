@@ -66,29 +66,29 @@
                     <label><?php echo $this->lang->line('items_branch_location') ?></label>
                     <?php
                     if ($branch_location) {
-                        foreach ($branch_location as $branch_location) {
+                        foreach ($branch_location as $value_location) {
                             ?>
                             <fieldset>
                                 <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="<?php echo $branch_location->branch_location_id ?>" name="branch_locatio_combo_1">
+                                    <input type="checkbox" class="custom-control-input" value="<?php echo $value_location->branch_location_id ?>" name="branch_location_combo_1">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">
                                         <?php
                                         if ($this->session->userdata('site_lang') == "arabic") {
                                             echo '<span>';
-                                            echo $branch_location->location_ar_name;
+                                            echo $value_location->location_ar_name;
                                             echo '</span>';
                                             echo '- &nbsp;';
                                             echo '<span>';
-                                            echo $branch_location->branch_ar_name;
+                                            echo $value_location->branch_ar_name;
                                             echo '</span>';
                                         } else {
                                             echo '<span>';
-                                            echo $branch_location->location_en_name;
+                                            echo $value_location->location_en_name;
                                             echo '</span>';
                                             echo '- &nbsp;';
                                             echo '<span>';
-                                            echo $branch_location->branch_en_name;
+                                            echo $value_location->branch_en_name;
                                             echo '</span>';
                                         }
                                         ?></span>
@@ -110,6 +110,7 @@
                     <div class="form-group" >
                         <input type="text" id="search" name="search" class="form-control" placeholder="Search"/>
                         <input type="text" id="combo_item_id" name="combo_item_id" />
+                        <input type="text" id="combo_item_id_counter" name="combo_item_id_counter" />
                         <div id="auto_complete_items">
                             <ul>
 
@@ -124,8 +125,8 @@
                     </div>
                 </div>
             </div>
-            <input type="text" value="" id="combo_form_number" name="combo_form_number"/>
-
+            
+  
 
             <div class="card-block p-0" id="combo_add_form"></div>
 
@@ -151,6 +152,7 @@
 
                 </div>
             </div>
+            <input type="hidden" value="1" id="combo_form_number" name="combo_form_number"/>
         </form>
     </div>
 </div>

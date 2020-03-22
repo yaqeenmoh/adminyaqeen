@@ -995,8 +995,6 @@ function addNewRowCombos() {
 
 
 
-
-
     $.ajax({
         url: "combo/addNewCombo",
         type: 'POST',
