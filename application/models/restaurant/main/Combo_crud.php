@@ -50,19 +50,20 @@ class Combo_crud extends CI_Model {
 
 
 
-    public function saveCombo($data_array) {
+    public function saveCombo($data_array, $items_combo) {
         if ($this->db->insert_batch($this->table, $data_array)) {
             $comboId = $this->db->insert_id();
-           
-            return $comboId;
+            
+            $items_array = array(
+                'item_id' => $items_combo, 'combo_id' => $comboId);
+            $this->db->insert('combo_items', $items_array);
+            return true;
         } else {
             return false;
         }
     }
 
-    public function saveComboItems($combo_items_data) {
-        $this->db->insert('combo_items', $combo_items_data);
-    }
+   
 
     //update application data 
 

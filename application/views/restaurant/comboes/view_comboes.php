@@ -13,7 +13,7 @@
     </div>
     <div  class="card-body collapse in" aria-expanded="true" style="">
         <form method="post" id="combo_form" action="Combo/save_combo">
-           <div class="card-block pb-0 pt-0" id="app_card_collapse">
+            <div class="card-block pb-0 pt-0" id="app_card_collapse">
                 <div class="form-group  col-xl-3 ">
                     <label for="combo_name"><?php echo $this->lang->line('combo_name') ?></label>
                     <div  class="position-relative has-icon-left">
@@ -109,8 +109,8 @@
                     <label class="mt-2" for="items"><?php echo $this->lang->line('combo_addItems'); ?></label>
                     <div class="form-group" >
                         <input type="text" id="search" name="search" class="form-control" placeholder="Search"/>
-                        <input type="text" id="combo_item_id" name="combo_item_id" />
-                        <input type="text" id="combo_item_id_counter" name="combo_item_id_counter" />
+                        <input type="hidden" id="combo_item_id" name="combo_item_id" />
+                        <input type="hidden" id="combo_item_id_counter" name="combo_item_id_counter" />
                         <div id="auto_complete_items">
                             <ul>
 
@@ -125,8 +125,8 @@
                     </div>
                 </div>
             </div>
-            
-  
+
+
 
             <div class="card-block p-0" id="combo_add_form"></div>
 

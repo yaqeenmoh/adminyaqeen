@@ -44,6 +44,7 @@ class Combo extends CI_Controller {
         $counter = $_POST['combo_form_number'];
         $combo_counter = (int) $counter;
         $data_array = array();
+        $items_array = array();
         for ($i = 1; $i <= $combo_counter; $i++) {
 
             if (isset($_POST['combo_validation'])) {
@@ -60,14 +61,15 @@ class Combo extends CI_Controller {
                     'location_branch_id' => $combo_branch_location);
                 array_push($data_array, $sub_array);
             }
+
+            $items_combo = $this->input->post('item_combo_id_');
         }
-        $comboId = $this->comboes->saveCombo($data_array);
-        
-        for ($j = 1; $i < $items_counter; $j++) {
-            $items_combo = $this->input->post('item_combo_id_' . $i);
-            var_dump($items_combo);
-            die();
-        }
+        $this->comboes->saveCombo($data_array, $items_combo);
+//        $this->comboes->saveComboItems($items_combo,$comboId);
+
+
+
+
         redirect(rest_path('Combo'));
     }
 
@@ -87,6 +89,7 @@ class Combo extends CI_Controller {
         $data['combo_branch_location'] = $this->custome_combo->getBranch_location();
         $data['combo_items'] = $this->custome_combo->getItemsByComboId($combo_id);
         $data['items'] = $this->custome_combo->getItems();
+
         $this->load->view('restaurant/comboes/update_combo_modal', $data);
 
         if (isset($_POST['combo_name'])) {
@@ -95,20 +98,19 @@ class Combo extends CI_Controller {
                 'price' => $_POST['combo_price'],
                 'end_date' => $_POST['combo_endDate'],
             );
-
             $this->comboes->updateComboData($combo_id, $comboArray);
-            if (isset($_POST['item_combo_id_'])) {
-                $item_id = $_POST['item_combo_id_'];
-                foreach ($item_id as $val) {
-                    $items_array = array("combo_id" => $combo_id,
-                        "item_id" => $val);
-                    $this->combo_items->insert_combo_items($items_array);
+        if (isset($_POST['item_combo_id_'])) {
+          
+                $item_array = $_POST['item_combo_id_'];
+              
+                foreach ($item_array as $key=>$val) {
+                    $item_id=$val;
+                    $this->combo_items->insert_combo_items($item_id,$combo_id);
                 }
                 redirect(rest_path('Combo'));
             } else {
                 echo 'ERROR';
             }
-
 
             redirect(rest_path('Combo'));
         }

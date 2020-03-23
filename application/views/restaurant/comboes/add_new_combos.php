@@ -44,29 +44,44 @@
             </span>
         </div>
     </div>
-    <div class="input-group col-xl-3">
-        <label for="select_branch_location" class="filled"><?php echo $this->lang->line('combo_select_location_branch') ?></label>
-        <?php
-        if ($branch_location) {
-            foreach ($branch_location as $row) {
-                ?>
-                <label class="display-inline-block custom-control custom-radio ml-1">
-                    <input value="<?php echo $row->branch_location_id; ?>" type="radio" name="branch_locatio_combo_<?php echo $new_id_row_combo; ?>" class="custom-control-input" required="">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description ml-0"><?php
-                        if ($this->session->userdata('site_lang') == "arabic") {
-                            echo $row->location_ar_name . "," . $row->branch_ar_name;
-                        } else {
-                            echo $row->location_en_name . "," . $row->branch_en_name;
-                        }
-                        ?></span>
-                </label>
+    <div class="input-group  col-xl-3 ml-3">
+                    <label><?php echo $this->lang->line('items_branch_location') ?></label>
+                    <?php
+                    if ($branch_location) {
+                        foreach ($branch_location as $value_location) {
+                            ?>
+                            <fieldset>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" value="<?php echo $value_location->branch_location_id ?>" name="branch_location_combo_1">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">
+                                        <?php
+                                        if ($this->session->userdata('site_lang') == "arabic") {
+                                            echo '<span>';
+                                            echo $value_location->location_ar_name;
+                                            echo '</span>';
+                                            echo '- &nbsp;';
+                                            echo '<span>';
+                                            echo $value_location->branch_ar_name;
+                                            echo '</span>';
+                                        } else {
+                                            echo '<span>';
+                                            echo $value_location->location_en_name;
+                                            echo '</span>';
+                                            echo '- &nbsp;';
+                                            echo '<span>';
+                                            echo $value_location->branch_en_name;
+                                            echo '</span>';
+                                        }
+                                        ?></span>
+                                </label>
 
-                <?php
-            }
-        }
-        ?>
-    </div>
+                            </fieldset>
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
     <div class="form-group col-xl-3 mr-1">
         <label class="mt-2" for="items"><?php echo $this->lang->line('combo_addItems'); ?></label>
         <div class="form-group" >

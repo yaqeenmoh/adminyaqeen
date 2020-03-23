@@ -14,8 +14,9 @@ class Combo_items_crud extends CI_Model {
         $this->db->delete('combo_items');
     }
 
-    public function insert_combo_items($item_id) {
-        if ($this->db->insert('combo_items', $item_id)) {
+    public function insert_combo_items($item_id,$combo_id) {
+      $combo_items_array=array('item_id'=>$item_id,'combo_id'=>$combo_id);
+        if ($this->db->insert('combo_items', $combo_items_array)) {
             return true;
         } else {
             return false;
