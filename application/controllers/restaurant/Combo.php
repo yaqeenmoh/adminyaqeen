@@ -52,19 +52,39 @@ class Combo extends CI_Controller {
                 $combo_price = $this->input->post('combo_price_' . $i);
                 $combo_start_date = $this->input->post('combo_satrtDate_' . $i);
                 $combo_end_date = $this->input->post('combo_endDate_' . $i);
-                $combo_branch_location = $this->input->post('branch_location_combo_' . $i);
-                $items_counter = $this->input->post('combo_item_id_counter');
 
 
-                $sub_array = array('name' => $combo_name, 'price' => $combo_price,
-                    'start_date' => $combo_start_date, 'end_date' => $combo_end_date,
-                    'location_branch_id' => $combo_branch_location);
-                array_push($data_array, $sub_array);
+                if (isset($_POST['branch_location_combo_']) . $i) {
+                    $combo_branch_location = $this->input->post('branch_location_combo_' . $i);
+                    foreach ($combo_branch_location as $key => $value) {
+                        $combo_branch_location_id = $value;
+                        $sub_array = array('name' => $combo_name, 'price' => $combo_price,
+                            'start_date' => $combo_start_date, 'end_date' => $combo_end_date,
+                            'location_branch_id' => $combo_branch_location_id);
+                        array_push($data_array, $sub_array);
+                    }
+                } else {
+                    $combo_branch_location = NULL;
+                    $sub_array = array('name' => $combo_name, 'price' => $combo_price,
+                        'start_date' => $combo_start_date, 'end_date' => $combo_end_date,
+                        'location_branch_id' => $combo_branch_location_id);
+                    array_push($data_array, $sub_array);
+                }
+
+
+                if (isset($_POST['item_combo_id_' . $i])) {
+                    $items_combo = $this->input->post('item_combo_id_' . $i);
+                    foreach ($items_combo as $key => $val) {
+
+                        $items_combo_ids = $val;
+                    }
+                } else {
+                    $items_combo = NULL;
+                }
             }
-
-            $items_combo = $this->input->post('item_combo_id_');
         }
-        $this->comboes->saveCombo($data_array, $items_combo);
+
+        $this->comboes->saveCombo($data_array, $items_combo_ids);
 //        $this->comboes->saveComboItems($items_combo,$comboId);
 
 
@@ -99,13 +119,13 @@ class Combo extends CI_Controller {
                 'end_date' => $_POST['combo_endDate'],
             );
             $this->comboes->updateComboData($combo_id, $comboArray);
-        if (isset($_POST['item_combo_id_'])) {
-          
+            if (isset($_POST['item_combo_id_'])) {
+
                 $item_array = $_POST['item_combo_id_'];
-              
-                foreach ($item_array as $key=>$val) {
-                    $item_id=$val;
-                    $this->combo_items->insert_combo_items($item_id,$combo_id);
+
+                foreach ($item_array as $key => $val) {
+                    $item_id = $val;
+                    $this->combo_items->insert_combo_items($item_id, $combo_id);
                 }
                 redirect(rest_path('Combo'));
             } else {

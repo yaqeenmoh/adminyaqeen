@@ -36,24 +36,10 @@ class Combo_crud extends CI_Model {
     }
 
     //insert combo
-//    public function saveCombo($data_array, $item_array) {
-//
-//
-//        $this->db->insert_batch($this->table, $data_array);
-//        $comboId = $this->db->insert_id();
-//        $comboItems = array(
-//            'combo_id' => $comboId,
-//            'item_id' => $itemArray
-//        );
-//        $this->db->insert_batch('combo_items', $item_array);
-//    }
-
-
 
     public function saveCombo($data_array, $items_combo) {
         if ($this->db->insert_batch($this->table, $data_array)) {
             $comboId = $this->db->insert_id();
-            
             $items_array = array(
                 'item_id' => $items_combo, 'combo_id' => $comboId);
             $this->db->insert('combo_items', $items_array);

@@ -52,7 +52,7 @@
                             ?>
                             <fieldset>
                                 <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="<?php echo $value_location->branch_location_id ?>" name="branch_location_combo_1">
+                                    <input type="checkbox" class="custom-control-input" value="<?php echo $value_location->branch_location_id ?>" name="branch_location_combo_1[]">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">
                                         <?php
@@ -93,12 +93,7 @@
                 </ul>
             </div>
 
-            <!--          <div class="form-group" id='combo_select_id'>
-            
-                                    </div>-->
-            <!--            <div id="combo_item_name_update">
-            
-                        </div>-->
+           
 
         </div>
     </div>
@@ -172,32 +167,6 @@
 
 
 
-//    alert(6)
-//    var ids = [];
-//    var combo_item = combo_id;
-//    ids.push(combo_item);
-//
-////    $('#combo_item_ids_update').append(combo_item + ',');
-//
-//    $('#combo_item_id_new').val(combo_item);
-//    var name = $('#combo_name_new' + combo_item).text();
-//    $('#search_add_multiple_combo').val(name);
-//
-////    $('#selcted_items').append(name + ',');
-//
-//
-//    $.ajax({
-//        url: "Combo/add_new_item_multiple",
-//        type: 'GET',
-//        data: {name: name,item_id:combo_item},
-//        success: function (result) {
-//              $('#combo_select_id').append(result);
-//            
-//        }
-//
-//    });
 
-
-    }
 
 </script>

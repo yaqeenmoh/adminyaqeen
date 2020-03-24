@@ -70,7 +70,7 @@
                             ?>
                             <fieldset>
                                 <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="<?php echo $value_location->branch_location_id ?>" name="branch_location_combo_1">
+                                    <input type="checkbox" class="custom-control-input" value="<?php echo $value_location->branch_location_id ?>" name="branch_location_combo_1[]">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">
                                         <?php
