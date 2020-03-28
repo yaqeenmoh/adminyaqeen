@@ -34,9 +34,10 @@ class Modifier_model extends CI_Model {
         $this->db->join('item_information', 'item_information.id = items.item_id');
         $this->db->where('item_modifier.id', $id);
         $sql = $this->db->get();
-
         return $sql->result();
     }
+
+  
 
     public function get_categories() {
 
@@ -71,13 +72,14 @@ class Modifier_model extends CI_Model {
     }
 
     public function get_items_by_category_id($id) {
-        $this->db->select('*,');
+        $this->db->select('*,items.category_id');
         $this->db->from('items');
         $this->db->join('item_information', 'item_information.id = items.item_id');
         $this->db->where('category_id', (int) $id);
         $sql = $this->db->get();
         return $sql->result();
     }
+
     public function get_items_by_sub_category_id($id) {
         $this->db->select('*,');
         $this->db->from('items');

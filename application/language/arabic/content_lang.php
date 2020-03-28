@@ -542,6 +542,7 @@ $lang['recipe_ar_name']="إسم الوصفة بالعربية  ";
 $lang['recipe_en_name']=" إسم الوصفة بالإنجليزية ";
 $lang['modifier-price']="السعر";
 $lang['modifier-qty']="الكمية";
+$lang['size_modifier']="الحجم";
 $lang['item_en_name']="إسم المادة بالإنجليزية";
 $lang['item_ar_name']="إسم المادة بالعربية";
 $lang['modifier_add_modifier']=" إضافة اضافات";
@@ -557,6 +558,7 @@ $lang['modifier_excel_sheet']=" الأكسل";
 $lang['modifier_download_excel']=" تنزيل إكسل";
 $lang['upload_modifier_excel']="تحميل إكسل";
 $lang['Modifier_type']="إضافة الإضافات عبر";
+$lang['modifier_titele']=" الإضافات ";
 $lang['modifiers_items']="المواد";
 $lang['modifiers_category']="المجموعة الرئيسية";
 $lang['modifiers_sub_category']=" المجموعة الفرعية";
@@ -570,6 +572,9 @@ $lang['modifier_excel_save']="حفظ";
 $lang['modifier_item_name']="اسم المادة";
 $lang['modifier_recipe_name']="المادة الاولية";
 $lang['delete_modifier_btn']="حذف";
+$lang['modifier_delete_message']="هل انت متاكد انك تريد حذف الإضافة";
+$lang['modifier_delete_yes']="نعم";
+$lang['modifier_delete_no']="لا";
 
 
 //COMBO 
@@ -599,3 +604,7 @@ $lang['combo_delete_items']="حذف المادة التابعة لهذه الو�
 $lang['combo_delete']="حذف الوجبة ";
 $lang['brand_modal_exit']="خروج";
 $lang['combo_modal_save']="حفظ";
+$lang['combo_delete_message']="هل انت متاكد انك تريد حذف الوجبة؟";
+$lang['combo_close_delete']='اغلاق';
+$lang['combo_delete_yes']='نعم';
+$lang['combo_delete_no']='لا';

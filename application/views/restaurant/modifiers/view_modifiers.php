@@ -140,7 +140,7 @@
                                                 <td>
                                                     <div class = "btn-group" role = "group" aria-label = "Basic example">
                                                         <a href="Modifier/update_modifier?modifier_id=<?php echo $value->modifier_id; ?>" data-toggle = "modal"  data-target = "#edit_modifier" class = "btn btn-outline-success btn-round"><?php echo $this->lang->line('edit_modifier_btn'); ?></a>
-                                                        <a href="Modifier/deleteModifier?modifier_id=<?php echo $value->modifier_id; ?>" class="btn btn-outline-danger btn-round"><?php echo $this->lang->line('delete_modifier_btn'); ?></a>
+                                                        <a  data-toggle="modal" data-target="#delete_modifier" href="Modifier/deleteModifier?modifier_id=<?php echo $value->modifier_id; ?>" class="btn btn-outline-danger btn-round"><?php echo $this->lang->line('delete_modifier_btn'); ?></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -186,6 +186,27 @@
     </div>
 
 </div>
+    <!-- delete modifier-->
+    <div class="form-group">
+
+        <div class="modal animated pulse text-xs-left" id="delete_modifier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel38"><?php echo $this->lang->line('delete_modifier_btn'); ?></h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 <! –– end modifier manage ––>
 

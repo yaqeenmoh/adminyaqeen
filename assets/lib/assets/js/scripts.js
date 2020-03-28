@@ -860,6 +860,16 @@ $("a[data-target=#edit_modifier]").click(function (ev) {
         $("#edit_modifier").modal("show");
     });
 });
+//delete modifier
+$("a[data-target=#delete_modifier]").click(function (ev) {
+    ev.preventDefault();
+    var target = $(this).attr("href");
+
+
+    $("#delete_modifier .modal-body").load(target, function () {
+        $("#delete_modifier").modal("show");
+    });
+});
 
 
 
@@ -971,6 +981,18 @@ $("a[data-target=#edit_combo]").click(function (ev) {
         $("#edit_combo").modal("show");
     });
 });
+
+//delete combo
+$("a[data-target=#delete_combo]").click(function (ev) {
+    ev.preventDefault();
+    var target = $(this).attr("href");
+
+
+    $("#delete_combo .modal-body").load(target, function () {
+        $("#delete_combo").modal("show");
+    });
+});
+
 
 
 

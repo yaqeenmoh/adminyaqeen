@@ -543,6 +543,7 @@ $lang['app_delete_yes']="Yes";
 
 //Modifiers
 $lang['admin_modifiers']='Modifiers';
+$lang['modifier_titele']=" Modifier ";
 $lang['title-modifier']='Modifiers';
 $lang['view_modifier']="View Modifiers";
 $lang['recipe_ar_name']="Recipe Arabic Name";
@@ -572,13 +573,17 @@ $lang['import_modifier']="Import";
 $lang['Recipe_modifier']="Recipe";
 $lang['price_modifier']="Price";
 $lang['qty_modifier']="Quantity";
-$lang['size_modifierr']="Size";
+$lang['size_modifier']="Size";
 $lang['add_new_row']="Add New";
 $lang['modifier_excel_cancel']="Cancel";
 $lang['modifier_excel_save']="Save";
 $lang['modifier_item_name']="Item name";
 $lang['modifier_recipe_name']="Recipe name";
 $lang['delete_modifier_btn']="Delete";
+$lang['modifier_close_delete']="Close";
+$lang['modifier_delete_message']="Are you sure to delete this Modifier?";
+$lang['modifier_delete_yes']="Yes";
+$lang['modifier_delete_no']="No";
 
 
 //COMBO 
@@ -608,3 +613,7 @@ $lang['combo_delete_items']="Delete items that depend on this Combo";
 $lang['combo_delete']="Delete Combo";
 $lang['brand_modal_exit']="Exit";
 $lang['combo_modal_save']="Save";
+$lang['combo_delete_message']="Are you sure to delete this combo?";
+$lang['combo_close_delete']='Close';
+$lang['combo_delete_yes']='Yes';
+$lang['combo_delete_no']='No';

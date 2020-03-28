@@ -77,14 +77,16 @@ class Combo extends CI_Controller {
                     foreach ($items_combo as $key => $val) {
 
                         $items_combo_ids = $val;
+                      $this->comboes->saveCombo($data_array, $items_combo_ids);
                     }
                 } else {
                     $items_combo = NULL;
+                     $this->comboes->saveCombo($data_array, $items_combo_ids);
                 }
             }
         }
 
-        $this->comboes->saveCombo($data_array, $items_combo_ids);
+       
 //        $this->comboes->saveComboItems($items_combo,$comboId);
 
 
@@ -140,12 +142,30 @@ class Combo extends CI_Controller {
 
     public function delete_combo() {
         $combo_id = $_GET['combo_id'];
-        $this->comboes->deleteComboBycomboId($combo_id);
-        $this->combo_items->delete_items_by_comboId($combo_id);
-        redirect(rest_path('Combo'));
+        $data['delete_combo'] = $this->comboes->getComboByComboId($combo_id);
+        $this->load->view('restaurant/comboes/delete_combo_model', $data);
+
+        if (isset($_POST['delete_combo_yes'])) {
+            $this->comboes->deleteComboBycomboId($combo_id);
+            $this->combo_items->delete_items_by_comboId($combo_id);
+            redirect(rest_path('Combo'));
+        } else {
+           
+            if (isset($_POST['delete_combo_no'])) {
+                redirect(rest_path('Combo'));
+            }
+        }
     }
 
     public function search_combo_items() {
+        $term = $this->input->get('term');
+        $this->db->like('en_name', $term);
+        $this->db->or_like('ar_name', $term);
+        $data = $this->db->get("item_information")->result();
+        echo json_encode($data);
+    }
+    public function search_multi_combo_items() {
+      ;
         $term = $this->input->get('term');
         $this->db->like('en_name', $term);
         $this->db->or_like('ar_name', $term);

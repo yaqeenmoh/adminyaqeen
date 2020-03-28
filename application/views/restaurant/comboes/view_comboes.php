@@ -228,7 +228,7 @@
                                                         <a href="Combo/update_combo?combo_id=<?php echo $combo->combo_id; ?>"
                                                            data-toggle = "modal"  data-target = "#edit_combo" class = "btn btn-outline-success btn-round">Details</a>
                                                         <a href="Combo/delete_combo?combo_id=<?php echo $combo->combo_id; ?>"
-                                                           class="btn btn-outline-danger btn-round"><?php echo $this->lang->line('delete_combo_btn'); ?></a>
+                                                            data-toggle="modal" data-target="#delete_combo"  class="btn btn-outline-danger btn-round"><?php echo $this->lang->line('delete_combo_btn'); ?></a>
                                                     </div>
                                                 </td>
                                             </tr>

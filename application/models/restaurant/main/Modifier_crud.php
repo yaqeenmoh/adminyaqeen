@@ -35,6 +35,7 @@ class Modifier_crud extends CI_Model {
         $this->db->where('id', $modifier_id);
         $this->db->update($this->table, $modifierArray);
     }
+    
 
     //delete Modifier  make disable coloum = 0
 

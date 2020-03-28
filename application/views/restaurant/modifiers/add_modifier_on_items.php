@@ -1,13 +1,13 @@
 
 <div class="form-group  col-xl-3 ">
     <label>Search</label>
-    
-        <input type="text" id="search" name="search" class="form-control"/>
-        
+
+    <input type="text" id="search" name="search" class="form-control"/>
+
 </div>
 
 <div class="form-group  col-xl-3" style="margin-top: 25px;">
-        <button data-toggle="modal"  data-target="#item_recipe"  class="btn btn-outline-success btn-round">Done</button>
+    <button data-toggle="modal"  data-target="#item_recipe"  class="btn btn-outline-success btn-round">Done</button>
 
 </div>
 
@@ -22,7 +22,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <label class="modal-title text-text-bold-600" id="myModalLabel33"><?php echo $this->lang->line('recipe_en_name'); ?></label>
+                <label class="modal-title text-text-bold-600" id="myModalLabel33"><?php echo $this->lang->line('modifier_titele'); ?></label>
             </div>
 
             <div class="modal-body">

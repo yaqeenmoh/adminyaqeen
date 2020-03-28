@@ -90,7 +90,9 @@ class Modifier extends CI_Controller {
         $this->load->model(rest_path('modifiers/Modifier_model'), 'modifier_custome');
         $modifier_id = $_GET['modifier_id'];
         $data['modifier'] = $this->modifier_custome->get_modifier_by_id($modifier_id);
-        $data['ModifierData'] = $this->modifier_custome->getModifierData();
+        $data['ModifierData'] = $this->modifier_custome->get_modifier_by_id($modifier_id);
+        $data['items'] = $this->modifier_custome->getAllItems();
+        $data['recipes'] = $this->modifier_custome->get_recipe();
         $this->load->view('restaurant/modifiers/update_modifier_modal', $data);
         if (isset($_POST['update_modifier'])) {
             $modifierArray = Array(
@@ -107,9 +109,22 @@ class Modifier extends CI_Controller {
 // function to delete Modifier 
     public function deleteModifier() {
         $this->load->model(rest_path('main/Modifier_crud'), 'modifiers');
+        $this->load->model(rest_path('modifiers/Modifier_model'), 'modifier_custome');
         $modifier_id = $_GET['modifier_id'];
-        $this->modifiers->deleteModifierByID($modifier_id);
-        redirect(rest_path('Modifier'));
+        $data['delete_modifier'] = $this->modifier_custome->get_modifier_by_id($modifier_id);
+        $this->load->view('restaurant/modifiers/delete_modifier_model', $data);
+           if (isset($_POST['delete_modifier_yes'])) {
+            $this->modifiers->deleteModifierByID($modifier_id);
+            redirect(rest_path('Modifier'));
+        } else {
+           
+            if (isset($_POST['delete_modifier_no'])) {
+                redirect(rest_path('Modifier'));
+            }
+        }
+
+
+
     }
 
     public function download_modifiers_excel() {
@@ -238,8 +253,8 @@ class Modifier extends CI_Controller {
             } else {
                 $recipe_id = $_POST['recipe_id_' . $i];
             }
-            
-            $sub_array = array('price' => $price, 'qty' => $qty, 'item_id'=> $item_id , 'recipe_id' => $recipe_id);
+
+            $sub_array = array('price' => $price, 'qty' => $qty, 'item_id' => $item_id, 'recipe_id' => $recipe_id);
             array_push($data, $sub_array);
         }
 

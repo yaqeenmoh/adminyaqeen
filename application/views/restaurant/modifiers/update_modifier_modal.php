@@ -25,85 +25,113 @@ if ($modifier) {
 
             </div>
 
-            <?php
-            if ($ModifierData) {
-                foreach ($ModifierData as $data) {
-                    ?>
-                    <label><?php echo $this->lang->line('item_en_name'); ?> </label>
-                    <div class="form-group">
-                        <select class="form-control" name="item_en_name">
 
-                            <option value="<?php echo $data->modifier_id; ?>" <?php
-                            if ($data->modifier_id == $value->id) {
-                                echo 'selected';
-                            }
-                            ?>>
-                                        <?php echo $data->items_en_name; ?>
-                            </option>
+            <label><?php echo $this->lang->line('item_en_name'); ?> </label>
+            <div class="form-group">
 
+
+
+                <select  name="item_en_name" class="selectBox border-success bg-white form-control">
+
+                    <?php
+                    if (!empty($items)) {
+                        foreach ($items as $item) {
                             ?>
-                        </select>
-                    </div>
+                            <option value="<?php echo $item->id ?>">
+                                <?php
+                           
+                                    echo '<span>';
+                                    echo $item->en_name;
+                                }
+                                ?> </option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select>
+
+            <label><?php echo $this->lang->line('item_ar_name'); ?> </label>
+            <div class="form-group">
 
 
-                    <label><?php echo $this->lang->line('item_ar_name'); ?> </label>
-                    <div class="form-group">
-                        <select class="form-control" name="item_ar_name">
 
-                            <option value="<?php echo $data->modifier_id; ?>" <?php
-                            if ($data->modifier_id == $value->id) {
-                                echo 'selected';
-                            }
-                            ?>>
-                                        <?php echo $data->items_ar_name; ?>
-                            </option>
+                <select  name="item_ar_name" class="selectBox border-success bg-white form-control">
 
-                        </select>
-                    </div>
+                    <?php
+                    if (!empty($items)) {
+                        foreach ($items as $item) {
+                            ?>
+                            <option value="<?php echo $item->id ?>">
+                                <?php
+                                    echo '<span>';
+                                    echo $item->ar_name;
+                              
+                                ?> </option>
+                            <?php
+                        
+                    }
+                    }
+                    ?>
+                </select>
+                <label><?php echo $this->lang->line('recipe_ar_name'); ?> </label>
+                
+                <select  name="item_ar_name" class="selectBox border-success bg-white form-control">
+
+                    <?php
+                    if (!empty($recipes)) {
+                        foreach ($recipes as $recipe) {
+                            ?>
+                            <option value="<?php echo $recipe->id ?>">
+                                <?php
+                                    echo '<span>';
+                                    echo $recipe->ar_name;
+                              
+                                ?> </option>
+                            <?php
+                        
+                    }
+                    }
+                    ?>
+                </select>
+                
+                <label><?php echo $this->lang->line('recipe_en_name'); ?> </label>
+                
+                <select  name="recipe_en_name" class="selectBox border-success bg-white form-control">
+
+                    <?php
+                    if (!empty($recipes)) {
+                        foreach ($recipes as $recipe) {
+                            ?>
+                            <option value="<?php echo $recipe->id ?>">
+                                <?php
+                                    echo '<span>';
+                                    echo $recipe->en_name;
+                              
+                                ?> </option>
+                            <?php
+                        
+                    }
+                    }
+                    ?>
+                </select>
 
 
-                    <label><?php echo $this->lang->line('recipe_en_name'); ?> </label>
-                    <div class="form-group">
-                        <select class="form-control" name="recipe_en_name">
-
-                            <option value="<?php echo $data->modifier_id; ?>" <?php
-                            if ($data->modifier_id == $value->id) {
-                                echo 'selected';
-                            }
-                            ?>>
-                                        <?php echo $data->recipe_en_name; ?>
-                            </option>
-
-                        </select>
-                    </div>
 
 
-                    <label><?php echo $this->lang->line('recipe_ar_name'); ?> </label>
-                    <div class="form-group">
-                        <select class="form-control" name="recipe_ar_name">
 
-                            <option value="<?php echo $data->modifier_id; ?>" <?php
-                            if ($data->modifier_id == $value->id) {
-                                echo 'selected';
-                            }
-                            ?>>
-                                        <?php echo $data->recipe_ar_name; ?>
-                            </option>
-
-                        </select>
-                    </div>
+            </div>
 
 
-                    <div class="modal-footer">
-                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="<?php echo $this->lang->line('modifier_modal_exit'); ?>">
-                        <input type="submit" name="update_modifier" class="btn btn-outline-primary btn-lg" value="<?php echo $this->lang->line('modifier_modal_save'); ?>">
-                    </div>
-                </form>
+               
 
-                <?php
-            }
-        }
+
+            <div class="modal-footer">
+                <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="<?php echo $this->lang->line('modifier_modal_exit'); ?>">
+                <input type="submit" name="update_modifier" class="btn btn-outline-primary btn-lg" value="<?php echo $this->lang->line('modifier_modal_save'); ?>">
+            </div>
+        </form>
+
+        <?php
     }
-}
 ?>
 <! –– end modal body  to edit brand ––>

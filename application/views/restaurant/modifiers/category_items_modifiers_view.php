@@ -46,7 +46,7 @@ if (!empty($items_cat)) {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <label class="modal-title text-text-bold-600" id="myModalLabel33"><?php echo $this->lang->line('recipe_en_name'); ?></label>
+                <label class="modal-title text-text-bold-600" id="myModalLabel33"><?php echo $this->lang->line('modifier_titele');?></label>
             </div>
 
             <div class="modal-body">

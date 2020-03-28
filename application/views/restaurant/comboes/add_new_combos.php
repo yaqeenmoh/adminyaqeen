@@ -2,7 +2,7 @@
     <div class="form-group  col-xl-3 ">
         <label for="combo_name"><?php echo $this->lang->line('combo_name') ?></label>
         <div  class="position-relative has-icon-left">
-            <input type="text" id="combo_name_" class="form-control"
+            <input type="text" id="combo_name_new" class="form-control"
                    placeholder="<?php echo $this->lang->line('combo_name') ?>" name="combo_name_<?php echo $new_id_row_combo; ?>"
                    value="" required="">
 
@@ -85,7 +85,7 @@
     <div class="form-group col-xl-3 mr-1">
         <label class="mt-2" for="items"><?php echo $this->lang->line('combo_addItems'); ?></label>
         <div class="form-group" >
-            <input type="text" id="search_add_multiple_combo" name="search" class="form-control" placeholder="Search"/>
+            <input type="text" id="search_add_multiple_combo" name="search_multi" class="form-control" placeholder="Search"/>
             <input type="hidden"  id="combo_item_id_new" />
             <div id="auto_complete_items_new">
                 <ul>
@@ -106,61 +106,136 @@
         </div>
     </div>
 
-    <div id="combo_select_ids"> 
+    <div id="combo_select_id_new"> 
       
     </div>
 </div>
 <div class="card-block p-0" id="combo_add_form"></div>
 
 <script>
+    
+    
+    
     $("#search_add_multiple_combo").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: 'Combo/search_combo_items',
-                data: {
-                    term: request.term
-                },
-                dataType: "json",
-                success: function (data) {
-                    var resp = $.map(data, function (obj) {
-                        var name_id = obj.id + '_' + obj.en_name;
-                        return name_id;
-                    });
+    source: function (request, response) {
+        $.ajax({
+            url: 'Combo/search_multi_combo_items',
+            data: {
+                term: request.term
+            },
+            dataType: "json",
+            success: function (data) {
+                var resp = $.map(data, function (obj) {
+                    var name_id = obj.id + '_' + obj.en_name;
+                    return name_id;
+                });
 
-                    var count = resp.length;
-                    $('#auto_complete_items_new > ul').html('');
-                    for (i = 0; i < count; i++) {
-                        var id = parseInt(resp[i]);
-                        var combo_name = id.toString().length;
-                        var combo_total_length = (combo_name) + 1;
-                        var combo_final_name = resp[i].substr(combo_total_length);
-                        $('#auto_complete_items_new > ul').append('<li id="combo_name_new' + id + '"><a onclick="combo_item_new(' + id + ')" id="combo_id_new' + id + '" class="text-primary">' + combo_final_name + '</a></li>');
+                var count = resp.length;
+                $('#auto_complete_items_new > ul').html('');
+                for (i = 0; i < count; i++) {
+                    var id = parseInt(resp[i]);
+                    var combo_name = id.toString().length;
+                    var combo_total_length = (+combo_name) + 1;
+                    var combo_final_name = resp[i].substr(combo_total_length);
+                    $('#auto_complete_items_new > ul').append('<li id="combo_name_new' + id + '"><a onclick="combo_item(' + id + ')" id="combo_id_' + id + '" class="text-primary">' + combo_final_name + '</a></li>');
 
-                    }
                 }
-            });
-        },
-        minLength: 1
+            }
+        });
+    },
+    minLength: 1
+});
+    
+    var counter = 0;
+function combo_item(combo_id) {
+    var combo_item = combo_id;
+    var item_id = $('#combo_item_id').val();
+    if (item_id.length > 0) {
+        var item_ids = item_id + '_' + combo_item;
+        $('#combo_item_id').val(item_ids);
+    } else {
+        $('#combo_item_id').val(combo_item);
+    }
+    var name = $('#combo_name_' + combo_item).text();
+    $('#search').val(name);
+    counter++;
+    $('#combo_item_id_counter').val(counter);
+
+    $.ajax({
+        url: "Combo/add_new_item_to_combo",
+        type: 'GET',
+        data: {combo_name: name, combo_id: combo_item},
+        success: function (result) {
+            $('#combo_select_id_new').append(result);
+        }
+
     });
 
 
-    function combo_item_new(combo_id) {
-        var combo_item = combo_id;
-        $('#combo_item_id').val(combo_item);
-        var name = $('#combo_name_' + combo_item).text();
-        $('#search').val(name);
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    $("#search_add_multiple_combo").autocomplete({
+//        source: function (request, response) {
+//            $.ajax({
+//                url: 'Combo/search_combo_items',
+//                data: {
+//                    term: request.term
+//                },
+//                dataType: "json",
+//                success: function (data) {
+//                    var resp = $.map(data, function (obj) {
+//                        var name_id = obj.id + '_' + obj.en_name;
+//                        return name_id;
+//                    });
+//
+//                    var count = resp.length;
+//                    $('#auto_complete_items_new > ul').html('');
+//                    for (i = 0; i < count; i++) {
+//                        var id = parseInt(resp[i]);
+//                        var combo_name = id.toString().length;
+//                        var combo_total_length = (combo_name) + 1;
+//                        var combo_final_name = resp[i].substr(combo_total_length);
+//                        $('#auto_complete_items_new > ul').append('<li id="combo_name_new' + id + '"><a onclick="combo_item_new(' + id + ')" id="combo_id_new' + id + '" class="text-primary">' + combo_final_name + '</a></li>');
+//
+//                    }
+//                }
+//            });
+//        },
+//        minLength: 1
+//    });
+//
+//
+//    function combo_item_new(combo_id) {
+//        var combo_item = combo_id;
+//        $('#combo_item_id').val(combo_item);
+//        var name = $('#combo_name_' + combo_item).text();
+//        $('#search').val(name);
 
 
 
-        $.ajax({
-            url: "Combo/add_new_item_to_combo",
-            type: 'GET',
-            data: {combo_name: name, combo_id: combo_item},
-            success: function (result) {
-                $('#combo_select_ids').append(result);
-            }
-
-        });
+//        $.ajax({
+//            url: "Combo/add_new_item_to_combo",
+//            type: 'GET',
+//            data: {combo_name: name, combo_id: combo_item},
+//            success: function (result) {
+//                $('#combo_select_ids').append(result);
+//            }
+//
+//        });
 
 
 
