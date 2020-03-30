@@ -41,11 +41,12 @@ class Combo extends CI_Controller {
     }
 
     public function save_combo() {
+
+
         $counter = $_POST['combo_form_number'];
-        $combo_counter = (int) $counter;
         $data_array = array();
-        $items_array = array();
-        for ($i = 1; $i <= $combo_counter; $i++) {
+ 
+        for ($i = 1; $i <= $counter; $i++) {
 
             if (isset($_POST['combo_validation'])) {
                 $combo_name = $this->input->post('combo_name_' . $i);
@@ -54,44 +55,24 @@ class Combo extends CI_Controller {
                 $combo_end_date = $this->input->post('combo_endDate_' . $i);
 
 
-                if (isset($_POST['branch_location_combo_']) . $i) {
-                    $combo_branch_location = $this->input->post('branch_location_combo_' . $i);
-                    foreach ($combo_branch_location as $key => $value) {
-                        $combo_branch_location_id = $value;
-                        $sub_array = array('name' => $combo_name, 'price' => $combo_price,
-                            'start_date' => $combo_start_date, 'end_date' => $combo_end_date,
-                            'location_branch_id' => $combo_branch_location_id);
-                        array_push($data_array, $sub_array);
-                    }
-                } else {
-                    $combo_branch_location = NULL;
+                $combo_branch_location = $this->input->post('branch_location_combo_' . $i);
+                foreach ($combo_branch_location as $key => $value) {
+                    $combo_branch_location_id = $value;
                     $sub_array = array('name' => $combo_name, 'price' => $combo_price,
                         'start_date' => $combo_start_date, 'end_date' => $combo_end_date,
                         'location_branch_id' => $combo_branch_location_id);
                     array_push($data_array, $sub_array);
                 }
 
-
-                if (isset($_POST['item_combo_id_' . $i])) {
-                    $items_combo = $this->input->post('item_combo_id_' . $i);
-                    foreach ($items_combo as $key => $val) {
-
-                        $items_combo_ids = $val;
-                      $this->comboes->saveCombo($data_array, $items_combo_ids);
-                    }
-                } else {
-                    $items_combo = NULL;
-                     $this->comboes->saveCombo($data_array, $items_combo_ids);
+                $items_combo = $this->input->post('item_combo_id_' . $i);
+                foreach ($items_combo as $key => $val) {
+                    $items_combo_ids = $val;
+                   
                 }
             }
         }
-
-       
-//        $this->comboes->saveComboItems($items_combo,$comboId);
-
-
-
-
+         $this->comboes->saveCombo($items_combo_ids, $data_array);
+    
         redirect(rest_path('Combo'));
     }
 
@@ -150,7 +131,7 @@ class Combo extends CI_Controller {
             $this->combo_items->delete_items_by_comboId($combo_id);
             redirect(rest_path('Combo'));
         } else {
-           
+
             if (isset($_POST['delete_combo_no'])) {
                 redirect(rest_path('Combo'));
             }
@@ -164,8 +145,8 @@ class Combo extends CI_Controller {
         $data = $this->db->get("item_information")->result();
         echo json_encode($data);
     }
+
     public function search_multi_combo_items() {
-      ;
         $term = $this->input->get('term');
         $this->db->like('en_name', $term);
         $this->db->or_like('ar_name', $term);

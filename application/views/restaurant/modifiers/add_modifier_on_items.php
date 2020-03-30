@@ -1,6 +1,6 @@
 
 <div class="form-group  col-xl-3 ">
-    <label>Search</label>
+    <label><?php echo $this->lang->line('modifier_search');?></label>
 
     <input type="text" id="search" name="search" class="form-control"/>
 

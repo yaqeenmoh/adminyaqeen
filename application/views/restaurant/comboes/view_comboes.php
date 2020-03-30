@@ -152,7 +152,7 @@
 
                 </div>
             </div>
-            <input type="hidden" value="1" id="combo_form_number" name="combo_form_number"/>
+            <input type="tel" value="1" id="combo_form_number" name="combo_form_number"/>
         </form>
     </div>
 </div>
@@ -226,7 +226,7 @@
                                                 <td>
                                                     <div class = "btn-group" role = "group" aria-label = "Basic example">
                                                         <a href="Combo/update_combo?combo_id=<?php echo $combo->combo_id; ?>"
-                                                           data-toggle = "modal"  data-target = "#edit_combo" class = "btn btn-outline-success btn-round">Details</a>
+                                                           data-toggle = "modal"  data-target = "#edit_combo" class = "btn btn-outline-success btn-round"><?php echo $this->lang->line('combo_details');?></a>
                                                         <a href="Combo/delete_combo?combo_id=<?php echo $combo->combo_id; ?>"
                                                             data-toggle="modal" data-target="#delete_combo"  class="btn btn-outline-danger btn-round"><?php echo $this->lang->line('delete_combo_btn'); ?></a>
                                                     </div>

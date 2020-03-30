@@ -53,6 +53,7 @@
 
 <script>
     var table_count = $('#counter').val();
+    console.log('table_count',table_count);
 
     for (var x = 0; x < table_count; x++) {
 

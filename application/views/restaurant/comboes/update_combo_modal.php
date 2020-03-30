@@ -31,6 +31,7 @@ if ($combo_info) {
                 <?php
                 if ($combo_items) {
                     foreach ($combo_items as $item) {
+                      
                         ?>
                         <label class="display-inline-block custom-control custom-checkbox">
                             <input id="item_id_check" name='item_combo_id_[]' value="<?php echo $item->item_id; ?>"  type="checkbox" checked="checked" class="custom-control-input">
