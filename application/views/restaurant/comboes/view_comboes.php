@@ -152,7 +152,7 @@
 
                 </div>
             </div>
-            <input type="tel" value="1" id="combo_form_number" name="combo_form_number"/>
+            <input type="text" value="1" id="combo_form_number" name="combo_form_number"/>
         </form>
     </div>
 </div>

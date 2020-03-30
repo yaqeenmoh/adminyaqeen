@@ -63,6 +63,7 @@ class Combo extends CI_Controller {
                         'location_branch_id' => $combo_branch_location_id);
                     array_push($data_array, $sub_array);
                 }
+                
 
                 $items_combo = $this->input->post('item_combo_id_' . $i);
                 foreach ($items_combo as $key => $val) {
