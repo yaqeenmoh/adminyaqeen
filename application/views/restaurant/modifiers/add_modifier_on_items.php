@@ -4,8 +4,8 @@
 
     <input type="text" id="search" name="search" class="form-control"/>
 
-</div>
-<div class="card-block p-0" style="margin-top: -21px; margin-left: 25px;">
+<!--</div>
+<div class="card-block p-0" >-->
     <ul id="recipe">
 
     </ul>
