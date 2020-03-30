@@ -7,6 +7,9 @@
 <div class="form-group  col-xl-3 ">
     <label>Search</label>
     <input type="text" id="search" name="search" class="form-control"/>
+     <ul id="recipe_combo_items">
+        
+    </ul>
 </div>
 
 <div class="form-group  col-xl-3" style="margin-top: 25px;">
@@ -131,17 +134,133 @@ if (!empty($items_cat)) {
                 dataType: "json",
                 success: function (data) {
                     var resp = $.map(data, function (obj) {
-                        return obj.en_name;
+                        var name = obj.id + '_' + obj.en_name;
+                        return name;
                     });
                     var resp_id = $.map(data, function (obj) {
                         return obj.id;
                     });
-
                     response(resp);
                     $('#selected_cat_item_id').val(resp_id);
+
+
+
+                    var count = resp.length;
+                    $('#recipe_combo_items').html('');
+                    for (i = 0; i < count; i++) {
+                        var id = parseInt(resp[i]);
+                        var length_name = id.toString().length;
+                        var total = (+length_name) + 1;
+                        var recipe_name = resp[i].substr(total);
+                        $('#recipe_combo_items').append('<li id="recipe_name_' + id + '"><a  class="text-primary" onclick="get_recipe_id(' + id + ')" >' + recipe_name + '</a></li>');
+                    }
+
+
+
                 }
             });
         },
         minLength: 1
     });
+
+
+
+
+    function get_recipe_id(resp_id) {
+        $('#recipe_id').val(resp_id);
+        var name = $('#recipe_name_' + resp_id).text();
+        $('#search').val(name);
+        $('#search_recipe_done').html(' <button type="button" id="search_recipe_done" class="float-right btn btn-outline-primary btn-round"><?php echo $this->lang->line('custom_item_done'); ?></button>');
+
+    }
+
+
+    $('#search_recipe_done').click(function () {
+
+        var html = '';
+        html += '<hr>';
+        html += '<div class="row">';
+
+        html += '<div class="form-group  col-xl-3">';
+        html += '<label>recipe</label>';
+        html += '<div class="position-relative has-icon-left">';
+        html += '<input type="text" name="option_1_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option'); ?>" >';
+        html += '<div class="form-control-position">';
+        html += '<i class="icon-navicon2"></i>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+        html += '<div class="form-group  col-xl-3 p-0">';
+        html += '<label>dddd</label>';
+        html += '<input type="number" step="0.01"  name="option1_price_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_price'); ?>" >';
+        html += '</div>';
+
+
+        html += '<div class="form-group  col-xl-3">';
+        html += '<label><?php echo $this->lang->line('custom_item_option_2'); ?></label>';
+        html += '<div class="position-relative has-icon-left">';
+        html += '<input type="text" name="option_2_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_2'); ?>" >';
+        html += '<div class="form-control-position">';
+        html += '<i class="icon-navicon2"></i>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+        html += '<div class="form-group  col-xl-3 p-0">';
+        html += '<label><?php echo $this->lang->line('custom_item_option_price_2'); ?></label>';
+        html += '<input type="number" step="0.01" name="option2_price_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_price_2'); ?>" >';
+        html += '</div>';
+
+        html += '<div class="form-group  col-xl-3">';
+        html += '<label><?php echo $this->lang->line('custom_item_option_3'); ?></label>';
+        html += '<div class="position-relative has-icon-left">';
+        html += '<input type="text" name="option_3_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_3'); ?>" >';
+        html += '<div class="form-control-position">';
+        html += '<i class="icon-navicon2"></i>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+
+        html += '<div class="form-group  col-xl-3 p-0">';
+        html += '<label><?php echo $this->lang->line('custom_item_option_price_3'); ?></label>';
+        html += '<input type="number" step="0.01" name="option3_price_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_price_3'); ?>" >';
+        html += '</div>';
+
+
+
+        html += '<div class="form-group  col-xl-3">';
+        html += '<label><?php echo $this->lang->line('custom_item_option_minimum'); ?></label>';
+        html += '<input type="number" name="option_minimum_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_minimum'); ?>" >';
+        html += '</div>';
+
+        html += '<div class="form-group  col-xl-3">';
+        html += '<label><?php echo $this->lang->line('custom_item_option_maximum'); ?></label>';
+        html += '<input type="number" name="option_maximum_1" class="form-control" placeholder="<?php echo $this->lang->line('custom_item_option_maximum'); ?>" >';
+        html += '</div>';
+
+
+
+        html += '<div id="recipy_option_multi"></div>';
+
+        html += '<div class="form-group  col-xl-3">';
+        html += '<label for="add"></label>';
+        html += '<div class="position-relative has-icon-left">';
+        html += '<a onclick="add_recipe_option()" class="btn btn-social btn-min-width mr-1 mb-1 btn-blue-grey">';
+        html += '<span class="icon-plus-circle font-medium-3"></span>';
+        html += '<?php echo $this->lang->line('custom_item_add_form'); ?> </a>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+        $('#recipy_option_1').html(html);
+    });
+
+
+
+    function delete_recipe_option(form_id) {
+        $('.row_' + form_id).hide();
+    }
+
 </script>

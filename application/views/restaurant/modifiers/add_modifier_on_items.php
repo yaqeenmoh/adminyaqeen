@@ -4,9 +4,8 @@
 
     <input type="text" id="search" name="search" class="form-control"/>
 
-<!--</div>
-<div class="card-block p-0" >-->
-    <ul id="recipe">
+
+    <ul id="recipe_items">
 
     </ul>
 </div>
@@ -100,34 +99,7 @@
 
 <! –– end modal body  to add modifier ––>
 
-<script>
-    $("#search").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: 'Modifier/search',
-                data: {
-                    term: request.term
-                },
-                dataType: "json",
-                success: function (data) {
-                    var resp = $.map(data, function (obj) {
-                        return obj.en_name;
-                    });
-                    var resp_id = $.map(data, function (obj) {
-                        return obj.id;
-                    });
-                    var resp_ar_name = $.map(data, function (obj) {
-                        return obj.ar_name;
-                    });
 
-                    response(resp);
-                    $('#selected_item_id').val(resp_id);
-                }
-            });
-        },
-        minLength: 1
-    });
-</script>
 <script>
     $("#search").autocomplete({
         source: function (request, response) {
@@ -151,13 +123,13 @@
 
 
                     var count = resp.length;
-                    $('#recipe').html('');
+                    $('#recipe_items').html('');
                     for (i = 0; i < count; i++) {
                         var id = parseInt(resp[i]);
                         var length_name = id.toString().length;
                         var total = (+length_name) + 1;
                         var recipe_name = resp[i].substr(total);
-                        $('#recipe').append('<li id="recipe_name_' + id + '"><a  class="text-primary" onclick="get_recipe_id(' + id + ')" >' + recipe_name + '</a></li>');
+                        $('#recipe_items').append('<li id="recipe_name_' + id + '"><a  class="text-primary" onclick="get_recipe_id(' + id + ')" >' + recipe_name + '</a></li>');
                     }
 
 

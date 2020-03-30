@@ -44,9 +44,11 @@ class Combo extends CI_Controller {
 
 
         $counter = $_POST['combo_form_number'];
+        $form_counter=(int)$counter;
+
         $data_array = array();
  
-        for ($i = 1; $i <= $counter; $i++) {
+        for ($i = 1; $i <= $form_counter; $i++) {
 
             if (isset($_POST['combo_validation'])) {
                 $combo_name = $this->input->post('combo_name_' . $i);
@@ -68,11 +70,16 @@ class Combo extends CI_Controller {
                 $items_combo = $this->input->post('item_combo_id_' . $i);
                 foreach ($items_combo as $key => $val) {
                     $items_combo_ids = $val;
+                    var_dump($items_combo_ids);
+                    
+                    
                    
                 }
             }
         }
-         $this->comboes->saveCombo($items_combo_ids, $data_array);
+        
+     
+         $this->comboes->saveCombo($data_array, $items_combo_ids);
     
         redirect(rest_path('Combo'));
     }
